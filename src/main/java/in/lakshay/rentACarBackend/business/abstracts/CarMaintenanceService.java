@@ -1,0 +1,36 @@
+package in.lakshay.rentACarBackend.business.abstracts;
+
+import in.lakshay.rentACarBackend.business.dtos.carMaintenanceDtos.lists.CarMaintenanceListByCarIdDto;
+import in.lakshay.rentACarBackend.business.dtos.carMaintenanceDtos.lists.CarMaintenanceListDto;
+import in.lakshay.rentACarBackend.business.dtos.carMaintenanceDtos.gets.GetCarMaintenanceDto;
+import in.lakshay.rentACarBackend.business.requests.carMaintenanceRequests.CreateCarMaintenanceRequest;
+import in.lakshay.rentACarBackend.business.requests.carMaintenanceRequests.DeleteCarMaintenanceRequest;
+import in.lakshay.rentACarBackend.business.requests.carMaintenanceRequests.UpdateCarMaintenanceRequest;
+import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.carExceptions.CarNotFoundException;
+import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.carMaintenanceExceptions.CarAlreadyInMaintenanceException;
+import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.carMaintenanceExceptions.CarExistsInCarMaintenanceException;
+import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.carMaintenanceExceptions.CarMaintenanceNotFoundException;
+import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.carMaintenanceExceptions.MaintenanceReturnDateBeforeTodayException;
+import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.rentalCarExceptions.CarAlreadyRentedEnteredDateException;
+import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.rentalCarExceptions.StartDateBeforeTodayException;
+import in.lakshay.rentACarBackend.core.utilities.result.DataResult;
+import in.lakshay.rentACarBackend.core.utilities.result.Result;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public interface CarMaintenanceService {
+
+	DataResult<List<CarMaintenanceListDto>> getAll();
+
+	Result add(CreateCarMaintenanceRequest createCarMaintenanceRequest) throws MaintenanceReturnDateBeforeTodayException, CarAlreadyInMaintenanceException, CarNotFoundException, CarAlreadyRentedEnteredDateException, StartDateBeforeTodayException;
+	Result update(UpdateCarMaintenanceRequest updateCarMaintenanceRequest) throws CarMaintenanceNotFoundException, MaintenanceReturnDateBeforeTodayException, CarAlreadyInMaintenanceException, CarNotFoundException, CarAlreadyRentedEnteredDateException, StartDateBeforeTodayException;
+	Result delete(DeleteCarMaintenanceRequest carMaintenanceRequest) throws CarMaintenanceNotFoundException;
+
+	DataResult<GetCarMaintenanceDto> getById(int carMaintenanceId) throws CarMaintenanceNotFoundException;
+	DataResult<List<CarMaintenanceListByCarIdDto>> getAllByCarMaintenance_CarId(int carId) throws CarNotFoundException;
+
+	void checkIfNotCarAlreadyInMaintenanceOnTheEnteredDate(int carId, LocalDate enteredDate) throws CarAlreadyInMaintenanceException;
+	void checkIsExistsByCar_CarId(int carId) throws CarExistsInCarMaintenanceException;
+
+}
