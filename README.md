@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚗 Rent-A-Car - Vehicle Rental Management System
+# 🚗 CarCatalog - Vehicle Rental Management System
 
 [![Java](https://img.shields.io/badge/Java-17-orange?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.x-green?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
@@ -8,7 +8,7 @@
 [![JWT](https://img.shields.io/badge/JWT-Auth-purple?style=for-the-badge&logo=jsonwebtokens&logoColor=white)](https://jwt.io/)
 [![Swagger](https://img.shields.io/badge/Swagger-API_Docs-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)](https://swagger.io/)
 
-**A comprehensive vehicle rental management system with secure RESTful API**
+**A comprehensive vehicle catalog and rental management system with secure RESTful API**
 
 [Overview](#-overview) •
 [Features](#-key-features) •
@@ -23,7 +23,7 @@
 
 ## 📋 Overview
 
-**Rent-A-Car** is a robust Spring Boot application designed to provide a complete solution for vehicle rental management. The system allows users to browse available vehicles, make reservations, manage bookings, and process payments through a secure RESTful API.
+**CarCatalog** is a robust Spring Boot application designed to provide a complete solution for vehicle catalog and rental management. The system allows users to browse available vehicles, make reservations, manage bookings, and process payments through a secure RESTful API.
 
 The application supports both individual and corporate customers, with different workflows for each. It includes features for tracking vehicle maintenance, crash history, and city-based operations. The system also handles additional services that can be added to rentals, such as GPS or child seats.
 
@@ -75,14 +75,14 @@ The project follows a layered architecture with clear separation of concerns:
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/Rent-A-Car-Project.git
-cd Rent-A-Car-Project
+git clone https://github.com/yourusername/CarCatalog.git
+cd CarCatalog
 ```
 
 2. **Configure the database**
 
 ```sql
-CREATE DATABASE rentACarBackend;
+CREATE DATABASE carCatalogDb;
 ```
 
 3. **Configure application properties**
@@ -90,7 +90,7 @@ CREATE DATABASE rentACarBackend;
 Update `src/main/resources/application.properties` with your database credentials:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/rentACarBackend
+spring.datasource.url=jdbc:mysql://localhost:3306/carCatalogDb
 spring.datasource.username=your_username
 spring.datasource.password=your_password
 ```
@@ -257,6 +257,6 @@ Contributions are welcome! Here's how you can contribute:
 <div align="center">
   <p>⭐ Star this repository if you find it helpful!</p>
   <p>
-    <sub>Built with ❤️ using Spring Boot and Java</sub>
+    <sub>CarCatalog - Built with ❤️ using Spring Boot and Java</sub>
   </p>
 </div>
