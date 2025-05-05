@@ -13,6 +13,7 @@ import in.lakshay.rentACarBackend.core.utilities.result.SuccessDataResult;
 import in.lakshay.rentACarBackend.dataAccess.abstracts.UserDao;
 import in.lakshay.rentACarBackend.entities.abstracts.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,11 +25,13 @@ public class UserManager implements UserService {
 
     private final UserDao userDao;
     private final ModelMapperService modelMapperService;
+    private final PasswordEncoder passwordEncoder; // for hashing passwords
 
     @Autowired
-    public UserManager(UserDao userDao, ModelMapperService modelMapperService) {
+    public UserManager(UserDao userDao, ModelMapperService modelMapperService, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
         this.modelMapperService = modelMapperService;
+        this.passwordEncoder = passwordEncoder;
     }
 
 
@@ -87,6 +90,18 @@ public class UserManager implements UserService {
             throw new UserEmailNotValidException(BusinessMessages.UserMessages.USER_EMAIL_ALREAY_EXISTS + email);
         }
         return true; // email is ok to use
+    }
+
+    // encode a password using bcrypt
+    @Override
+    public String encodePassword(String rawPassword) {
+        return passwordEncoder.encode(rawPassword);
+    }
+
+    // check if a raw password matches an encoded password
+    @Override
+    public boolean matchesPassword(String rawPassword, String encodedPassword) {
+        return passwordEncoder.matches(rawPassword, encodedPassword);
     }
 
 }

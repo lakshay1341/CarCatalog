@@ -39,6 +39,14 @@ public interface UserService {
     // allows keeping same email, prevents using someone else's
     boolean checkIfUserEmailNotExistsForUpdate(int userId, String email) throws UserEmailNotValidException;
 
+    // password encoding methods
+
+    // encode a password using bcrypt
+    String encodePassword(String rawPassword);
+
+    // check if a raw password matches an encoded password
+    boolean matchesPassword(String rawPassword, String encodedPassword);
+
     // todo: add password reset functionality
 
 }

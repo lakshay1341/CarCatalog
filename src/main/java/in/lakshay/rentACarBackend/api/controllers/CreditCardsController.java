@@ -7,6 +7,7 @@ import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.c
 import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.customerExceptions.CustomerNotFoundException;
 import in.lakshay.rentACarBackend.core.utilities.result.DataResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,9 +31,9 @@ public class CreditCardsController {
     // TODO: maybe add some security here? credit card info is sensitive!
 
 
-    // get all credit cards - probably not a good idea in production lol
-    // should be admin-only or something
+    // get all credit cards - admin only
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public DataResult<List<CreditCardListDto>> getAll(){
         return this.creditCardService.getAll(); // just delegate to service
     }

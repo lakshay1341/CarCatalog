@@ -6,6 +6,8 @@ import in.lakshay.rentACarBackend.entities.abstracts.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository  // spring component
 public interface UserDao extends JpaRepository<User, Integer> {  // magic repo stuff
 
@@ -17,6 +19,7 @@ public interface UserDao extends JpaRepository<User, Integer> {  // magic repo s
     // used for updates to prevent email conflicts
     boolean existsByEmailAndUserIdIsNot(String email, int userId);
 
-    // todo: maybe add findByEmail for login?
+    // find user by email - used for login/auth
+    Optional<User> findByEmail(String email);  // returns empty if not found
 
 }

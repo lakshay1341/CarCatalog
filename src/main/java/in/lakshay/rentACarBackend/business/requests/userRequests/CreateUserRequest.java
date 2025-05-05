@@ -21,7 +21,7 @@ public class CreateUserRequest {
     private String email;
 
     // password - keep it reasonable length
-    // todo: maybe add more password validation later?
+    // will be hashed with bcrypt before storing
     @NotNull
     @NotBlank
     @Size(min = 3, max = 30)  // min 3 chars, max 30

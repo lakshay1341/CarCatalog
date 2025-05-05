@@ -26,9 +26,9 @@ public class User {
     @Column(name = "email", unique = true, nullable = false)  // no dupes!
     private String email;  // also used for notifications
 
-    // todo: should prob hash this before storing
-    // need to add password validation too
+    // password is stored as a bcrypt hash
+    // validation is done in request DTOs
     @Column(name = "password", nullable = false)
-    private String password;  // plaintext for now - fix b4 prod!
+    private String password;  // bcrypt hashed password
 
 }

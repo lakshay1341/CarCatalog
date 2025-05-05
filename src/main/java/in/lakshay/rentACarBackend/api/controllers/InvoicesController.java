@@ -14,6 +14,7 @@ import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.p
 import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.rentalCarExceptions.RentalCarNotFoundException;
 import in.lakshay.rentACarBackend.core.utilities.result.DataResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
@@ -31,8 +32,9 @@ public class InvoicesController {
     }
 
 
-    // get all invoices - prob not a good idea in prod lol
+    // get all invoices - admin only
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public DataResult<List<InvoiceListDto>> getAll(){
         return this.invoiceService.getAll();  // just pass thru to service
     }

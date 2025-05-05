@@ -72,6 +72,9 @@ public class CorporateCustomerManager implements CorporateCustomerService {
         // map the request to entity and save it
         CorporateCustomer corporateCustomer = this.modelMapperService.forRequest().map(createCorporateCustomerRequest, CorporateCustomer.class);
 
+        // encode password before saving
+        corporateCustomer.setPassword(this.userService.encodePassword(corporateCustomer.getPassword()));
+
         this.corporateCustomerDao.save(corporateCustomer);  // todo: maybe add some validation here?
 
         return new SuccessResult(BusinessMessages.GlobalMessages.DATA_ADDED_SUCCESSFULLY);
@@ -86,6 +89,9 @@ public class CorporateCustomerManager implements CorporateCustomerService {
         checkIfTaxNumberNotExistsForUpdate(updateCorporateCustomerRequest.getUserId(), updateCorporateCustomerRequest.getTaxNumber());
 
         CorporateCustomer corporateCustomer = this.modelMapperService.forRequest().map(updateCorporateCustomerRequest, CorporateCustomer.class);
+
+        // encode password before saving
+        corporateCustomer.setPassword(this.userService.encodePassword(corporateCustomer.getPassword()));
 
         // save it to db
         this.corporateCustomerDao.save(corporateCustomer);

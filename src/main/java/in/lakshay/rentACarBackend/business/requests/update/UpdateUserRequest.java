@@ -27,11 +27,11 @@ public class UpdateUserRequest {
     private String email;  // also used as username
 
     // updated password
-    // todo: add better password rules
+    // will be hashed with bcrypt before storing
     @NotNull
     @NotBlank
     @Size(min = 3, max = 30)  // reasonable length
-    private String password;  // still stored in plaintext - fix b4 prod!
+    private String password;
 
     // todo: maybe add password confirmation field?
     // also should add old password for verification

@@ -1,14 +1,17 @@
 package in.lakshay.rentACarBackend;
 
+import in.lakshay.rentACarBackend.security.AppProperties;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 // main app class - everything starts here
 @SpringBootApplication
 @RestControllerAdvice  // for global exception stuff
+@EnableConfigurationProperties(AppProperties.class) // enable JWT config props
 public class RentACarProjectApplication {
 
 	// entry point - where the magic happens
@@ -28,5 +31,6 @@ public class RentACarProjectApplication {
 
 	// note to self: add health check endpoint?
 	// also maybe add some metrics tracking?
+
 
 }

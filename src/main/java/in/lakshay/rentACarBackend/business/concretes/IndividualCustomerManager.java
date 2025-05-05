@@ -85,6 +85,9 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         // convert to entity
         IndividualCustomer individualCustomer = this.modelMapperService.forRequest().map(createIndividualCustomerRequest, IndividualCustomer.class);
 
+        // encode password before saving
+        individualCustomer.setPassword(this.userService.encodePassword(individualCustomer.getPassword()));
+
         // save to db
         this.individualCustomerDao.save(individualCustomer);
 
@@ -99,6 +102,9 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         checkIfNationalIdentityNotExistsForUpdate(updateIndividualCustomerRequest.getUserId(), updateIndividualCustomerRequest.getNationalIdentity());
 
         IndividualCustomer individualCustomer = this.modelMapperService.forRequest().map(updateIndividualCustomerRequest, IndividualCustomer.class);
+
+        // encode password before saving
+        individualCustomer.setPassword(this.userService.encodePassword(individualCustomer.getPassword()));
 
         this.individualCustomerDao.save(individualCustomer);
 

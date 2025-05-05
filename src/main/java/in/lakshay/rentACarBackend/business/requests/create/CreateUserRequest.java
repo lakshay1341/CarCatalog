@@ -22,11 +22,11 @@ public class CreateUserRequest {
     private String email;  // also used as username
 
     // password with basic validation
-    // todo: add better password rules
+    // will be hashed with bcrypt before storing
     @NotNull
     @NotBlank
     @Size(min = 3, max = 30)  // reasonable length
-    private String password;  // stored in plaintext for now - fix b4 prod!
+    private String password;
 
     // should prob add name fields but those are in subclasses
 

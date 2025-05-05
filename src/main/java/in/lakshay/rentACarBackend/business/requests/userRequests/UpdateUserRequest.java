@@ -25,10 +25,10 @@ public class UpdateUserRequest {
     private String email;  // also username
 
     // new password - basic validation
-    // todo: add better password rules? this is pretty weak
+    // will be hashed with bcrypt before storing
     @NotNull
     @NotBlank
     @Size(min = 3, max = 30)  // not too short/long
-    private String password;  // stored in plaintext - yikes!
+    private String password;
 
 }

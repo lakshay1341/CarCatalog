@@ -24,6 +24,7 @@ import in.lakshay.rentACarBackend.core.utilities.exceptions.businessExceptions.r
 import in.lakshay.rentACarBackend.core.utilities.result.DataResult;
 import in.lakshay.rentACarBackend.core.utilities.result.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
@@ -44,8 +45,9 @@ public class PaymentsController {
     // TODO: add more payment methods in future
 
 
-    // get all payments - probably admin only
+    // get all payments - admin only
     @GetMapping("/getAll")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public DataResult<List<PaymentListDto>> getAll(){
         return this.paymentService.getAll(); // just pass to service
     }
